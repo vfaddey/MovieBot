@@ -3,7 +3,6 @@ import pprint
 import psycopg2
 from dataclasses import dataclass
 
-# Подключение к базе данных
 conn = psycopg2.connect(
     dbname="films",
     user="postgres",
