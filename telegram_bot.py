@@ -4,7 +4,7 @@ from db_manager import DatabaseManager
 import psycopg2
 from command_handler import CommandHandler
 
-bot = TeleBot('6759802763:AAHFgRRSPBlgrhC735yJVB2IjB4pMu6CWCo')
+bot = TeleBot('API-KEY')
 
 conn = psycopg2.connect(
     dbname="films",
