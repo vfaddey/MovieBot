@@ -1,0 +1,49 @@
+-- Создание таблицы "Страны"
+CREATE TABLE Countries (
+    country_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+
+-- Создание таблицы "Фильмы"
+CREATE TABLE Movies (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    age_rating INTEGER,
+    movie_length INTEGER,
+    year INTEGER,
+	country_id INTEGER REFERENCES Countries(country_id),
+    poster_url VARCHAR(255),
+    short_description TEXT,
+	rating_id INTEGER PRIMARY KEY,
+    CONSTRAINT check_age_rating CHECK (age_rating >= 0),
+    CONSTRAINT check_movie_length CHECK (movie_length >= 0)
+);
+
+-- Создание таблицы "Жанры"
+CREATE TABLE Genres (
+    genre_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE movie_genre (
+    movie_id INTEGER REFERENCES movies(id),
+    genre_id INTEGER REFERENCES genres(genre_id),
+    PRIMARY KEY (movie_id, genre_id)
+);
+
+
+-- Забыл добавить
+CREATE TABLE ratings (
+    id SERIAL PRIMARY KEY,
+    film_critics FLOAT,
+    imdb FLOAT,
+    kp FLOAT,
+    russian_film_critics FLOAT
+);
+
+ALTER TABLE movies
+ADD COLUMN rating_id SERIAL;
+
+ALTER TABLE movies DROP COLUMN backdrop_url;
